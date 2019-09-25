@@ -8,7 +8,7 @@ interface ArticleListFragmentContract {
 
         fun onArticleListReceived(articles: MutableList<Article>)
 
-        fun onGetArticlesFailed()
+        fun onGetArticlesFailed(articles: MutableList<Article>)
     }
 
     interface Presenter {

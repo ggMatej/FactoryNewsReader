@@ -3,6 +3,8 @@ package hr.ferit.matejmijic.factorynewsreader.presentation
 import hr.ferit.matejmijic.factorynewsreader.common.RESPONSE_OK
 import hr.ferit.matejmijic.factorynewsreader.model.response.GetArticlesResponse
 import hr.ferit.matejmijic.factorynewsreader.networking.interactors.NewsInteractor
+import hr.ferit.matejmijic.factorynewsreader.persistence.ArticleRepository
+import hr.ferit.matejmijic.factorynewsreader.persistence.ArticleRoomRepository
 import hr.ferit.matejmijic.factorynewsreader.ui.articles.ArticleListFragmentContract
 import retrofit2.Call
 import retrofit2.Callback
@@ -12,6 +14,8 @@ class ArticleListFragmentPresenter(private val interactor: NewsInteractor): Arti
 
     private lateinit var view: ArticleListFragmentContract.View
 
+    private var repository: ArticleRepository = ArticleRoomRepository()
+
     override fun setView(view: ArticleListFragmentContract.View) {
         this.view = view
     }
@@ -20,10 +24,14 @@ class ArticleListFragmentPresenter(private val interactor: NewsInteractor): Arti
         interactor.getArticles(getArticlesCallback())
     }
 
+    private fun showArticles() {
+        view.onArticleListReceived(repository.getArticles())
+    }
+
     private fun getArticlesCallback(): Callback<GetArticlesResponse> = object : Callback<GetArticlesResponse> {
 
         override fun onFailure(call: Call<GetArticlesResponse>, t: Throwable) {
-            view.onGetArticlesFailed()
+            view.onGetArticlesFailed(repository.getArticles())
         }
 
         override fun onResponse(
@@ -39,11 +47,13 @@ class ArticleListFragmentPresenter(private val interactor: NewsInteractor): Arti
         }
     }
 
-    private fun handleSomethingWentWrong() = view.onGetArticlesFailed()
+    private fun handleSomethingWentWrong() = view.onGetArticlesFailed(repository.getArticles())
 
     private fun handleOkResponse(response: Response<GetArticlesResponse>) {
         response.body()?.articles?.run {
-            view.onArticleListReceived(this)
+            repository.deleteAllArticles()
+            repository.addArticles(this)
+            showArticles()
         }
     }
 }

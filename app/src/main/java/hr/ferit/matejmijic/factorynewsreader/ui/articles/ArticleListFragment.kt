@@ -41,6 +41,8 @@ class ArticleListFragment : BaseFragment(),
         getArticles()
     }
 
+
+
     private fun getArticles() {
         presenter.onGetArticles()
     }
@@ -51,7 +53,8 @@ class ArticleListFragment : BaseFragment(),
 
     override fun onArticleListReceived(articles: MutableList<Article>) = adapter.setData(articles)
 
-    override fun onGetArticlesFailed() {
+    override fun onGetArticlesFailed(articles: MutableList<Article>) {
         Toast.makeText(App.getAppContext(), "FAILED", Toast.LENGTH_LONG).show()
+        adapter.setData(articles)
     }
 }
