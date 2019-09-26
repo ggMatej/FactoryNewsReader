@@ -1,10 +1,10 @@
 package hr.ferit.matejmijic.factorynewsreader.ui.articles
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import hr.ferit.matejmijic.factorynewsreader.App
 import hr.ferit.matejmijic.factorynewsreader.R
 import hr.ferit.matejmijic.factorynewsreader.common.showFragment
 import hr.ferit.matejmijic.factorynewsreader.model.Article
@@ -55,15 +55,31 @@ class ArticleListFragment : BaseFragment(),
         activity?.showFragment(R.id.fragmentContainer, ArticlesPagerFragment.getInstance(articleList, article), true)
     }
 
-    override fun onArticleListReceived(articles: MutableList<Article>){
-        adapter.setData(articles)
-        adapter.notifyDataSetChanged()
+    override fun onArticleListReceived(articles: MutableList<Article>) {
+        progressBar.visibility = View.GONE
+        articleRecyclerView.visibility = View.VISIBLE
         articleList.clear()
         articleList.addAll(articles)
+        adapter.setData(articles)
+        adapter.notifyDataSetChanged()
     }
 
     override fun onGetArticlesFailed(articles: MutableList<Article>) {
-        Toast.makeText(App.getAppContext(), "FAILED", Toast.LENGTH_LONG).show()
+        showAlertDialog()
+        articleList.clear()
+        articleList.addAll(articles)
         adapter.setData(articles)
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun showAlertDialog() {
+        AlertDialog.Builder(activity)
+            .setTitle("Greška")
+            .setMessage("Ups, došlo je do pogreške.")
+            .setPositiveButton("U REDU"){
+                    dialog, _ ->
+                dialog.dismiss()
+            }
+            .create().show()
     }
 }

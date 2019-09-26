@@ -16,5 +16,4 @@ object ArticlePrefs {
     fun getLong(key: String, defaultValue: Long): Long? {
         return sharedPrefs().getLong(key, defaultValue)
     }
-
 }

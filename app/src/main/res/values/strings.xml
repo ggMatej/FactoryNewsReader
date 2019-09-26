@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Factory News Reader</string>
+    <string name="article_image">article image</string>
 </resources>

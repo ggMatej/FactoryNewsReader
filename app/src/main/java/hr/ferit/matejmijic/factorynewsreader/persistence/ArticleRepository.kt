@@ -9,5 +9,4 @@ interface ArticleRepository {
     fun getArticles(): MutableList<Article>
 
     fun deleteAllArticles()
-
 }

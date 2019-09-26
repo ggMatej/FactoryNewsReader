@@ -6,6 +6,7 @@ import android.view.View
 import hr.ferit.matejmijic.factorynewsreader.R
 import hr.ferit.matejmijic.factorynewsreader.common.loadImage
 import hr.ferit.matejmijic.factorynewsreader.model.Article
+import hr.ferit.matejmijic.factorynewsreader.ui.activities.ContainerActivity
 import hr.ferit.matejmijic.factorynewsreader.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_article_details.*
 import kotlinx.android.synthetic.main.item_article.articleImage

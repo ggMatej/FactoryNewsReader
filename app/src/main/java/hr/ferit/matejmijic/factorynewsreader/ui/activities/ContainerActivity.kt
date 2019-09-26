@@ -1,17 +1,18 @@
-package hr.ferit.matejmijic.factorynewsreader.ui
+package hr.ferit.matejmijic.factorynewsreader.ui.activities
 
 import hr.ferit.matejmijic.factorynewsreader.R
 import hr.ferit.matejmijic.factorynewsreader.common.showFragment
 import hr.ferit.matejmijic.factorynewsreader.ui.articles.ArticleListFragment
 import hr.ferit.matejmijic.factorynewsreader.ui.base.BaseActivity
+import kotlinx.android.synthetic.main.activity_container.*
 
 class ContainerActivity : BaseActivity() {
 
-    override fun getLayoutResourceId(): Int = R.layout.activity_articles
+    override fun getLayoutResourceId(): Int = R.layout.activity_container
 
     override fun initUi() {
         showFragment(R.id.fragmentContainer,
-            ArticleListFragment()
+            ArticleListFragment(), false
         )
     }
 }

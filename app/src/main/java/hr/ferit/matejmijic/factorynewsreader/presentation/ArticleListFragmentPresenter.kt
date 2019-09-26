@@ -25,7 +25,6 @@ class ArticleListFragmentPresenter(private val interactor: NewsInteractor): Arti
 
     override fun onGetArticles() {
         if(System.currentTimeMillis() - ArticlePrefs.getLong(ArticlePrefs.LAST_REQUEST_TIME,0)!! > FIVE_MINUTES || repository.getArticles().isEmpty()){
-            ArticlePrefs.store(ArticlePrefs.LAST_REQUEST_TIME,System.currentTimeMillis())
             interactor.getArticles(getArticlesCallback())
         }else{
             view.onArticleListReceived(repository.getArticles())
@@ -61,6 +60,7 @@ class ArticleListFragmentPresenter(private val interactor: NewsInteractor): Arti
         response.body()?.articles?.run {
             repository.deleteAllArticles()
             repository.addArticles(this)
+            ArticlePrefs.store(ArticlePrefs.LAST_REQUEST_TIME,System.currentTimeMillis())
             showArticles()
         }
     }

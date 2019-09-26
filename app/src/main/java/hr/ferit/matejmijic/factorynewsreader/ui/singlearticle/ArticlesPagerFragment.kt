@@ -9,7 +9,7 @@ import hr.ferit.matejmijic.factorynewsreader.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_pager.*
 import java.util.ArrayList
 
-class ArticlesPagerFragment : BaseFragment(){
+class ArticlesPagerFragment : BaseFragment() {
 
     companion object {
 

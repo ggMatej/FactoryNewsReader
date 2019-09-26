@@ -14,9 +14,7 @@ class ArticleListHolder(override val containerView: View) : RecyclerView.ViewHol
 
         containerView.setOnClickListener { onItemSelected(article) }
 
-
         containerView.articleImage.loadImage(article.image)
-
 
         containerView.articleTitle.text = article.title
     }

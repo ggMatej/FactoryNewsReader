@@ -19,7 +19,7 @@ object BackendFactory {
 
     private fun provideAuthenticationInterceptor() = Interceptor {
         var request = it.request()
-        var url = request.url().newBuilder().addQueryParameter(AUTHENTICATION, API_KEY).build()
+        val url = request.url().newBuilder().addQueryParameter(AUTHENTICATION, API_KEY).build()
         request = request.newBuilder().url(url).build()
         it.proceed(request)
     }

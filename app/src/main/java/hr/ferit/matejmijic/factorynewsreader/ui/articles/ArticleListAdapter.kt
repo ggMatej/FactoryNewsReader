@@ -6,18 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import hr.ferit.matejmijic.factorynewsreader.R
 import hr.ferit.matejmijic.factorynewsreader.model.Article
 
-class ArticleListAdapter(private val onItemSelected: (Article) -> Unit) : RecyclerView.Adapter<ArticleListHolder>(){
+class ArticleListAdapter(private val onItemSelected: (Article) -> Unit) : RecyclerView.Adapter<ArticleListHolder>() {
 
     private val data: MutableList<Article> = mutableListOf()
 
-    fun getData(position: Int): Article = data[position]
-
-    fun addData(item: Article){
-        data.add(item)
-        notifyItemInserted(data.size)
-    }
-
-    fun setData(data: MutableList<Article>){
+    fun setData(data: MutableList<Article>) {
         this.data.clear()
         this.data.addAll(data)
         notifyDataSetChanged()
