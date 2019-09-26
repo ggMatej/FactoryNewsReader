@@ -1,8 +1,11 @@
 package hr.ferit.matejmijic.factorynewsreader.presentation
 
+
+import hr.ferit.matejmijic.factorynewsreader.common.FIVE_MINUTES
 import hr.ferit.matejmijic.factorynewsreader.common.RESPONSE_OK
 import hr.ferit.matejmijic.factorynewsreader.model.response.GetArticlesResponse
 import hr.ferit.matejmijic.factorynewsreader.networking.interactors.NewsInteractor
+import hr.ferit.matejmijic.factorynewsreader.persistence.ArticlePrefs
 import hr.ferit.matejmijic.factorynewsreader.persistence.ArticleRepository
 import hr.ferit.matejmijic.factorynewsreader.persistence.ArticleRoomRepository
 import hr.ferit.matejmijic.factorynewsreader.ui.articles.ArticleListFragmentContract
@@ -21,7 +24,12 @@ class ArticleListFragmentPresenter(private val interactor: NewsInteractor): Arti
     }
 
     override fun onGetArticles() {
-        interactor.getArticles(getArticlesCallback())
+        if(System.currentTimeMillis() - ArticlePrefs.getLong(ArticlePrefs.LAST_REQUEST_TIME,0)!! > FIVE_MINUTES || repository.getArticles().isEmpty()){
+            ArticlePrefs.store(ArticlePrefs.LAST_REQUEST_TIME,System.currentTimeMillis())
+            interactor.getArticles(getArticlesCallback())
+        }else{
+            view.onArticleListReceived(repository.getArticles())
+        }
     }
 
     private fun showArticles() {
