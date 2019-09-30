@@ -4,7 +4,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import hr.ferit.matejmijic.factorynewsreader.model.Article
-import hr.ferit.matejmijic.factorynewsreader.ui.singlearticle.ArticleDetailsFragment
 
 class ArticlePagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
 
@@ -16,8 +15,9 @@ class ArticlePagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapt
         notifyDataSetChanged()
     }
 
-    override fun getItem(position: Int): Fragment =
-        ArticleDetailsFragment.getInstance(articleList[position])
+    override fun getItem(position: Int): Fragment {
+        return ArticleDetailsFragment.getInstance(articleList[position])
+    }
 
     override fun getCount(): Int = articleList.size
 }

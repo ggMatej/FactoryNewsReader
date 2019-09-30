@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Factory News Reader</string>
     <string name="article_image">article image</string>
+    <string name="toolbar_title">Factory news</string>
+    <string name="alert_dialog_get_articles_error_title">Greška</string>
+    <string name="alert_dialog_get_articles_error_text">Ups, došlo je do pogreške.</string>
+    <string name="alert_dialog_okay">U REDU</string>
+    <string name="toolbar_original_title">Factory news</string>
 </resources>

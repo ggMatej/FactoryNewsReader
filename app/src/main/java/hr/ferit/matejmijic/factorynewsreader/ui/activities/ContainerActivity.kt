@@ -4,7 +4,6 @@ import hr.ferit.matejmijic.factorynewsreader.R
 import hr.ferit.matejmijic.factorynewsreader.common.showFragment
 import hr.ferit.matejmijic.factorynewsreader.ui.articles.ArticleListFragment
 import hr.ferit.matejmijic.factorynewsreader.ui.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_container.*
 
 class ContainerActivity : BaseActivity() {
 

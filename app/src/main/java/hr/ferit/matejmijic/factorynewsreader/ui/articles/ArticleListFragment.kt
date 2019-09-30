@@ -3,15 +3,16 @@ package hr.ferit.matejmijic.factorynewsreader.ui.articles
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.ferit.matejmijic.factorynewsreader.R
 import hr.ferit.matejmijic.factorynewsreader.common.showFragment
 import hr.ferit.matejmijic.factorynewsreader.model.Article
 import hr.ferit.matejmijic.factorynewsreader.networking.BackendFactory
 import hr.ferit.matejmijic.factorynewsreader.presentation.ArticleListFragmentPresenter
+import hr.ferit.matejmijic.factorynewsreader.ui.activities.ContainerActivity
 import hr.ferit.matejmijic.factorynewsreader.ui.singlearticle.ArticlesPagerFragment
 import hr.ferit.matejmijic.factorynewsreader.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.activity_container.*
 import kotlinx.android.synthetic.main.fragment_article_list.*
 
 
@@ -42,6 +43,8 @@ class ArticleListFragment : BaseFragment(),
 
     private fun initUi() {
         presenter.setView(this)
+        (activity as ContainerActivity).myToolbar.title = getString(R.string.toolbar_original_title)
+        (activity as ContainerActivity).myToolbar.navigationIcon = null
         articleRecyclerView.layoutManager = LinearLayoutManager(context)
         articleRecyclerView.adapter = adapter
         getArticles()
@@ -74,9 +77,9 @@ class ArticleListFragment : BaseFragment(),
 
     private fun showAlertDialog() {
         AlertDialog.Builder(activity)
-            .setTitle("Greška")
-            .setMessage("Ups, došlo je do pogreške.")
-            .setPositiveButton("U REDU"){
+            .setTitle(getString(R.string.alert_dialog_get_articles_error_title))
+            .setMessage(getString(R.string.alert_dialog_get_articles_error_text))
+            .setPositiveButton(getString(R.string.alert_dialog_okay)){
                     dialog, _ ->
                 dialog.dismiss()
             }

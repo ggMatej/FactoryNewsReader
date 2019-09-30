@@ -2,7 +2,6 @@ package hr.ferit.matejmijic.factorynewsreader.ui.articles
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import hr.ferit.matejmijic.factorynewsreader.R
 import hr.ferit.matejmijic.factorynewsreader.common.loadImage
 import hr.ferit.matejmijic.factorynewsreader.model.Article
 import kotlinx.android.extensions.LayoutContainer

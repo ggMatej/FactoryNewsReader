@@ -3,10 +3,10 @@ package hr.ferit.matejmijic.factorynewsreader.ui.singlearticle
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import hr.ferit.matejmijic.factorynewsreader.R
 import hr.ferit.matejmijic.factorynewsreader.common.loadImage
 import hr.ferit.matejmijic.factorynewsreader.model.Article
-import hr.ferit.matejmijic.factorynewsreader.ui.activities.ContainerActivity
 import hr.ferit.matejmijic.factorynewsreader.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_article_details.*
 import kotlinx.android.synthetic.main.item_article.articleImage
@@ -33,11 +33,12 @@ class ArticleDetailsFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        article = arguments?.getParcelable(ARTICLE_EXTRA) as Article
+        article = arguments?.getParcelable(ARTICLE_EXTRA)!!
         initUi()
     }
 
     private fun initUi() {
+        (activity as AppCompatActivity).supportActionBar?.title = article.title
         articleImage.loadImage(article.image)
         articleTitle.text = article.title
         articleDetails.text = article.description
