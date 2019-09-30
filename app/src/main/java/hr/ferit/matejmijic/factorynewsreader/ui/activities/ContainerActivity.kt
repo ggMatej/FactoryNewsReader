@@ -10,6 +10,7 @@ class ContainerActivity : BaseActivity() {
     override fun getLayoutResourceId(): Int = R.layout.activity_container
 
     override fun initUi() {
+        window.statusBarColor = resources.getColor(R.color.colorStatusbar)
         showFragment(R.id.fragmentContainer,
             ArticleListFragment(), false
         )

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorToolbar">#3E50B5</color>
+    <color name="colorStatusbar">#2E3A8D</color>
     <color name="colorTitleToolbar">#FFFFFF</color>
     <color name="colorItemArticleTitle">#000000</color>
     <color name="colorArticleDetails">#444444</color>
